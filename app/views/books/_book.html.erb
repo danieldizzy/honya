@@ -7,8 +7,7 @@
   </div>
 
   <div class="caption">
-<p>
-  <strong><%= link_to book.name, book_path(book) %></strong>
-</p>    <p><%= book.price.to_f / 1 %> </p>
+<p><strong><%= link_to book.name, book_path(book) %></strong></p>
+<p>¥<%= book.price.to_f / 1 %> </p>
   </div>
 </div>
