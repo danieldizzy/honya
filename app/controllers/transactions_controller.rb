@@ -3,7 +3,6 @@ class TransactionsController< ApplicationController
   def create
     book = Book.find_by!(slug: params[:slug])
     token = params[:stripeToken]
-  end
 
   begin
     charge = Stripe::Charge.create(
@@ -25,5 +24,4 @@ class TransactionsController< ApplicationController
     @sale = Sale.find_by!(guid: params[:guid])
     @book = @sale.book
   end
-
 end

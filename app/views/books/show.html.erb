@@ -11,8 +11,28 @@
       <p class="justify"><%= @book.description %>
         <h4 class="text-right">¥<%= @book.price.to_f / 1 %> </h4> <!--  # Use @book.price.to_f / 100 for USD but / 1 for JPY -->
       </p>
-		</div>
 
+			<% if current_user %>
+
+			<%= form_tag buy_path(slug: @book.slug) do  %>
+				  <script
+				    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+				    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+				    data-amount="	<%= @book.price %>"
+				    data-name="eStuk"
+				    data-description=" <%= @book.name %>"
+				    data-email="<%= current_user.email %>"
+				    data-locale="auto">
+				  </script>
+				<% end %>
+
+				<% else %>
+				<p>
+					Please login first to Buy
+				</p>
+				<% end %>
+
+		</div>
 	</div>
 </div>
 
